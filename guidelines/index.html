@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Samdhi">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>Schema matching evaluation</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        img {
+        width: 95%;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      img {
+        width: 100%;
+        border: 1px solid #0c0606
+      }
+
+      div-text {
+        border-top: solid;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <!-- <link href="starter-template.css" rel="stylesheet"> -->
+  </head>
+  <body>
+
+  <!-- Navbar -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navigation</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="bi bi-github"></i></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Go to similarity rule
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#lexical">Lexical</a></li>
+              <li><a class="dropdown-item" href="#structural">Structural</a></li>
+              <li><a class="dropdown-item" href="#conceptual">Conceptual</a></li>
+               
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Log in</a>
+          </li>
+        </ul>
+        <form class="d-flex" style="margin-right: 1em;">
+          <button class="btn btn-outline-success" type="button" onclick="load_()">Load</button>
+        </form>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+      
+  <div class="col-lg-8 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4">Guidelines for evaluation of clustering and schema matching</span>
+      </a>
+    </header>
+
+    <main>
+
+      <div class="row g-5">
+        <div class="col-md-6">
+          <h2>Evaluation</h2>
+          <p>Guidelines, data, and code</p>
+          <ul class="icon-list ps-0">
+            <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener" target="_blank">Cluster analysis</a></li>
+            <li class="text-muted d-flex align-items-start mb-1"><a href="../index.html">Schema matching</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <h2>Guides</h2>
+          <p>Instructions for how to evaluate with examples</p>
+          <ul class="icon-list ps-0">
+            <li class="d-flex align-items-start mb-1"><a href="#">Guidelines</a></li>
+            <li class="d-flex align-items-start mb-1"><a href="../examples/">Examples</a></li>
+          </ul>
+        </div>
+      </div>
+
+      ​<div id="main">
+
+        <div class="col-md-10" id="lexical" style="padding-top: 5em;">
+            <h3>Lexical similarity</h3>
+            <p>Text:  The 1933 Cuba-Bahamas hurricane was last of six major hurricanes , or at least a Category 3 on the Saffir-Simpson hurricane wind scale...</p>
+            <p>Text:  Hurricane Nina was the final tropical storm and hurricane of the 1957 Pacific hurricane season and the last storm...</p>
+        </div>
+
+        <div class="col-md-10" id="structural" style="padding-top: 5em;">
+            <h3>Structural + Lexical similarity</h3>
+            <p>Text: <a href="https://en.wikipedia.org/wiki/Operation_Nasr">Operation Nasr</a>, fought in early January 1981 , was a major battle of the Iran-Iraq War...</p>
+            <img src="../images/causal-Operation_Nasr.png" alt="Graph for operation Nasr">
+            <p>Text: <a href="https://en.wikipedia.org/wiki/Operation_Ostra_Brama">Operation Ostra Brama</a> ( lit . Operation `` Sharp Gate '' , English : Operation `` Gate of Dawn '' ) was an armed conflict during World War II between the Polish Home Army and the Nazi German occupiers of Vilnius...</p>
+            <img src="../images/causal-Operation_Ostra_Brama.png" alt="Graph for operation Ostra Brana">
+        </div>
+
+        <div class="col-md-10" id="conceptual" style="padding-top: 5em;">
+            <h3>Conceptual similarity</h3>
+            <img src="../images/causal-Invasion_of_Poland.png" alt="Graph for invasion of Poland">
+            <img src="../images/causal-Chatsworth_train_collision.png" alt="Graph for train collision">
+        </div>
+
+
+      </div>​​​​​​​
+    </main>
+    <footer class="pt-5 my-5 text-muted border-top">
+      Created by Samdhi &middot; &copy; 2023
+    </footer>
+  </div>
+      
+      <script>
+
+
+      </script>
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
