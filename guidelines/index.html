@@ -140,11 +140,23 @@
             <h2>Lexical vs graph-based similarity metrics</h2>
             <br>
             <h3 id="lexical" style="padding-top: 2.5em;">1. Lexical similarity</h3>
-            <p>Text:  The 1933 Cuba-Bahamas hurricane was last of six major hurricanes , or at least a Category 3 on the Saffir-Simpson hurricane wind scale...</p>
-            <p>Text:  Hurricane Nina was the final tropical storm and hurricane of the 1957 Pacific hurricane season and the last storm...</p>
+            <p> In token-based methods like TF-IDF (and also text embeddings), certain words (e.g. `hurricane`) are strong indicators of similarity.</p>
+            <p> Advantages:&emsp;&emsp; Quite homogenous clusters; Computationally inexpensive (counting); Strong baseline.<br>Disadvantages:&emsp;Cluster `too` homogenous; Existing resources are biased as they too used TF-IDF. 
+            </p>
+            <h5>Example similar texts by TF-IDF</h5>
+            <p>Note: Not all text shown; the 2nd and 3rd examples here include event types concatenated to event mentions used for evaluation (not as part of the input).</p>
+            <p><b>Similar text 1</b>: The 1933 Cuba-Bahamas hurricane was last of six major hurricanes , or at least a Category 3 on the Saffir-Simpson hurricane wind scale...</p>
+            <p><b>Similar text 2</b>: The 1941 Texas Catastrophe::hurricane , the second Catastrophe::storm of the 1941 Atlantic hurricane season , was a large and intense tropical Catastrophe::cyclone...</p>
+            <p><b>Similar text 3</b>: The 1815 North Carolina Catastrophe::hurricane Causation::caused the most severe flooding in New Bern , North Carolina since 1795 </p>
         </div>
 
-        <div class="col-md-10" id="structural" style="padding-top: 4em;">
+        
+
+
+
+
+
+        <div class="col-md-10" id="structural" style="padding-top: 4.5em;">
             <h3>2. Structural + Lexical similarity</h3>
             <p>Text: <a href="https://en.wikipedia.org/wiki/Operation_Nasr">Operation Nasr</a>, fought in early January 1981 , was a major battle of the Iran-Iraq War...</p>
             <img src="../images/causal-Operation_Nasr.png" alt="Graph for operation Nasr">
@@ -152,9 +164,16 @@
             <img src="../images/causal-Operation_Ostra_Brama.png" alt="Graph for operation Ostra Brana">
         </div>
 
-        <div class="col-md-10" id="conceptual" style="padding-top: 4em;">
+        <div class="col-md-10" id="conceptual" style="padding-top: 4.5em;">
             <h3>3. Conceptual similarity</h3>
+            <p>cf. Motif discovery (bioinformatics use such methods to discover related chemical compounds)</p>
+            <p>Example 1.</p>
+            <img src="../images/motif-discovery.png" alt="Motif discovery example">
+            <p>Example 2.</p>
+            <p>In this example, we can find similarity between events that are conceptually similar. In this case, the Invasion of Poland (with armies attacking from all sides) is matched to a head-on train collision.</p>
+            <h5>Wikipedia:<a href="https://en.wikipedia.org/wiki/Invasion_of_Poland">Invasion of Poland</a></h5>
             <img src="../images/causal-Invasion_of_Poland.png" alt="Graph for invasion of Poland">
+            <h5>Wikipedia:<a href="https://en.wikipedia.org/wiki/2008_Chatsworth_train_collision">Chatsworth Train Collision</a></h5>
             <img src="../images/causal-Chatsworth_train_collision.png" alt="Graph for train collision">
         </div>
 
