@@ -144,6 +144,7 @@
       <p>Basically, this is search: identify the schemas most similar to the query. Traditionally, a common similarity metric like TF-IDF is great at finding texts that are similar based on shared tokens. In our experiments, we test graph-based methods: We first generate a causal graph given a text, make graph embeddings using a graph attention network (GAT) (Velickovic et al, 2018), encode our query and all candidates and measure pair-wise distances (standardized Euclidean works good), examining top-k most similar schemas.</p>
       <p>Now, to work. In the sample below, you will find 50 queries, each matched with four (4) candidates from Wikipedia. Your task, should you choose to accept it, is to see if the query is like any of the candidates!</p>
       <p><b>Important</b>! For the first 25 (GAT), we match graph-to-graphs, so you'll find each text is followed by its corresponding graph query, while the four (4) candidates are shown as texts followed by graphs. For the second 25 (TF-IDF), we match text-to-texts, so graphs are not needed...</p>
+      <p>Also remember that the query using GAT is always a generated causal graph, while the candidate graphs are from our manually curated schema library.</p>
       <p><b>Instructions: </b>Look at each query and each of the four (4) candidates that follow. Check the boxes of those you find similar!</p>
       <p>Similar means: words are similar, meaning is similiar, causal structure is similar...</p>
       <p>For additional guidelines and examples, see the link above! Navigate using the <span style="color: #ff0000">Go to matched set</span>&#9663; &#11014; dropdown!</p>
@@ -151,10 +152,10 @@
 
       <hr class="col-3 col-md-2 mb-5">
 
-      <h4>Data and model specifics</h4>
+      <h4>Data and model specifics used to generate query causal graphs, embed, and match.</h4>
       <p class="fs-5 col-md-10">Data: 3.5k Wikipedia texts labeled with event types and topics</p>
       <p class="fs-5 col-md-10">Generative model: GPT2-XL-distill-high fine-tuned 16 epochs, 500 block_size</p>
-      <p class="fs-5 col-md-10">GAT specifics: dropout=0.5; hidden_channels=256; 2 conv layers</p>
+      <p class="fs-5 col-md-10">GAT (self-supervised); dropout=0.5; hidden_channels=256; 2 conv layers</p>
 
       ​<div id="main">
         <h2 id="metrics-table" style="padding-top: 2em;"><u>Graph metrics and evaluation</u></h2>
