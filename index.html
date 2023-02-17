@@ -144,14 +144,40 @@
             <hr class="col-3 col-md-2 mb-2">
             <h3 id="lexical" style="padding-top: 2.5em;">1. Lexical similarity</h3>
             <p> In token-based methods like TF-IDF (and also text embeddings), certain words (e.g. `hurricane`) are strong indicators of similarity.</p>
-            <p> Advantages:&emsp;&emsp; Quite homogenous clusters; Computationally inexpensive (counting); Strong baseline.<br>Disadvantages:&emsp;Cluster `too` homogenous; Existing resources are biased as they too used TF-IDF. 
-            </p>
-            <h5>Example similar texts by TF-IDF</h5>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Lexical similarity</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i>Advantages</i></td>
+                  <td>Quite homogenous clusters</td>
+                  <td>Computationally inexpensive (counting)</td>
+                  <td>Strong baseline</td>
+                </tr>
+                <tr>
+                  <td><i>Disadvantages</i></td>
+                  <td>Clusters `too` homogenous</td>
+                  <td>Not so good at `partial` similarity, analogical reasoning</td>
+                  <td>Existing resources are biased as they too based on TF-IDF</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h5>Example similar texts using TF-IDF</h5>
             <p>Note: Not all text shown; the 2nd and 3rd examples here include event types concatenated to event mentions used for evaluation (not as part of the input).</p>
             <p><b>Similar text 1</b>: The 1933 Cuba-Bahamas hurricane was last of six major hurricanes , or at least a Category 3 on the Saffir-Simpson hurricane wind scale...</p>
             <p><b>Similar text 2</b>: The 1941 Texas Catastrophe::hurricane , the second Catastrophe::storm of the 1941 Atlantic hurricane season , was a large and intense tropical Catastrophe::cyclone...</p>
             <p><b>Similar text 3</b>: The 1815 North Carolina Catastrophe::hurricane Causation::caused the most severe flooding in New Bern , North Carolina since 1795 </p>
         </div>
+
+
 
         
 
@@ -161,6 +187,7 @@
 
         <div class="col-md-10" id="structural" style="padding-top: 4.5em;">
             <h3>2. Structural + Lexical similarity</h3>
+            <p>There are also cases we can match event sequences (texts) based on a single concept like `operation` and then further match by node characteristics. In the examples below, each graph has is 4-nary with `operation` a salient node.</p>
             <p>Text: <a href="https://en.wikipedia.org/wiki/Operation_Nasr">Operation Nasr</a>, fought in early January 1981 , was a major battle of the Iran-Iraq War...</p>
             <img src="images/causal-Operation_Nasr.png" alt="Graph for operation Nasr">
             <p>Text: <a href="https://en.wikipedia.org/wiki/Operation_Ostra_Brama">Operation Ostra Brama</a> ( lit . Operation `` Sharp Gate '' , English : Operation `` Gate of Dawn '' ) was an armed conflict during World War II between the Polish Home Army and the Nazi German occupiers of Vilnius...</p>
