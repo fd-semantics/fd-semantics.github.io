@@ -136,20 +136,25 @@
     </header>
 
     <main>
-      <h1>Structured representations for knowledge discovery</h1>
+      <h2>Theme: Structured representations for knowledge discovery</h2>
       <p class="fs-4 col-md-10">Evaluation of schema matching using graph and text-based methods</p>
-      <p class="fs-5 col-md-10">Maven-3K; Preference model; GPT2-XL-distill-high fine-tuned 16 epochs</p>
-      <p class="fs-5 col-md-10">GAT dropout=0.5; hidden_channels=256; 2 conv layers; block_size=500</p></p>
 
+      <hr class="col-3 col-md-2 mb-4">
+      <p><b>What is schema matching?</b> We start with a text (or a <i>query</i>), for example the 2016 Masters Tournament, and a set of other texts that we have studied well, what we'll call <b>schemas</b>, like `competing in a diving competition` and `crime of passion`. Now, which of these schemas is most similar to our query, the Masters Tournament?</p>
+      <p>Basically, this is search: identify the schemas most similar to the query. Traditionally, a common similarity metric like TF-IDF is great at finding texts that are similar based on shared tokens. In our experiments, we test graph-based methods: We first generate a causal graph given a text, make graph embeddings using a graph attention network (GAT) (Velickovic et al, 2018), encode our query and all candidates and measure pair-wise distances (standardized Euclidean works good), examining top-k most similar schemas.</p>
+      <p>Now, to work. In the sample below, you will find 50 queries, each matched with four (4) candidates from Wikipedia. Your task, should you choose to accept it, is to see if the query is like any of the candidates!</p>
+      <p><b>Important</b>! For the first 25 (GAT), we match graph-to-graphs, so you'll find each text is followed by its corresponding graph query, while the four (4) candidates are shown as texts followed by graphs. For the second 25 (TF-IDF), we match text-to-texts, so graphs are not needed...</p>
+      <p><b>Instructions: </b>Look at each query and each of the four (4) candidates that follow. Check the boxes of those you find similar!</p>
+      <p>Similar means: words are similar, meaning is similiar, causal structure is similar...</p>
+      <p>For additional guidelines and examples, see the link above! Navigate using the <span style="color: #ff0000">Go to matched set</span>&#9663; &#11014; dropdown!</p>
+      <p>As you check boxes, Mean Average Precision will update in the table! Other values are fixed.</p>
 
       <hr class="col-3 col-md-2 mb-5">
 
-      <p>There are 50 queries here. Each query is a GRAPH (first 25, labeled GAT) or a TEXT (second 25, labeled TF-IDF). The schema matching algorithm finds the most similar graphs or texts.</p>
-      <p><b>Instructions:</b>Look at each query, and then consider each of the four (4) matched candidates. Check the boxes of those you think are most similar!</p>
-      <p>To determine similarity, consult the texts (first 100 chars included) and the graphs for the GAT matches. For guidelines, see the link above!</p>
-      <p>As you check boxes, Mean Average Precision will update in the table! FYI, other values are based on graph structures.</p>
-
-      <hr class="col-3 col-md-2 mb-5">
+      <h4>Data and model specifics</h4>
+      <p class="fs-5 col-md-10">Data: 3.5k Wikipedia texts labeled with event types and topics</p>
+      <p class="fs-5 col-md-10">Generative model: GPT2-XL-distill-high fine-tuned 16 epochs, 500 block_size</p>
+      <p class="fs-5 col-md-10">GAT specifics: dropout=0.5; hidden_channels=256; 2 conv layers</p>
 
       ​<div id="main">
         <h2 id="metrics-table" style="padding-top: 2em;"><u>Graph metrics and evaluation</u></h2>
@@ -238,7 +243,7 @@
               span.setAttribute("style", "padding-top:5em");
             }
             span.setAttribute("id", `method-${data[i].graph_type}`);
-            span.innerHTML = `<h3><u>Method: ${data[i].graph_type}</u></h3>\t Matched set: ${i%NUM_QUERIES+1} <br><br>SEARCH QUERY ${data[i].prototypical_text.slice(0,200)}`
+            span.innerHTML = `<h3><u>Method: ${data[i].graph_type}</u></h3>\t Matched set: ${i%NUM_QUERIES+1} <br><br><b>SEARCH QUERY</b> ${data[i].prototypical_text.slice(0,200)}`
             div.appendChild(span);
 
             if (data[i].graph_type==='gat' || data[i].graph_type==='feather'){
@@ -250,6 +255,7 @@
             var similar_texts = data[i].similar_texts;
             var span_2 = document.createElement("div");
             span_2.setAttribute("class", "new");
+            span_2.innerHTML += '<b>CANDIDATES</b><br>'
             for (j=0; j<4; j++) {
               span_2.innerHTML += '<input class="form-check-input ' + data[i].graph_type + '" type="checkbox" value="" id="flexCheckDefault-'+i+'-'+j+'"> SIMILAR ' + j + ':' + ' ' + similar_texts[j].slice(0,200)+'<br>';  
             }
