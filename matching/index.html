@@ -257,7 +257,7 @@
             var span_2 = document.createElement("div");
             span_2.setAttribute("class", "new");
             span_2.innerHTML += '<b>CANDIDATES</b><br>'
-            for (j=0; j<similar_texts[j].length; j++) {
+            for (j=0; j<4; j++) {
               span_2.innerHTML += '<input class="form-check-input ' + data[i].graph_type + '" type="checkbox" value="" id="flexCheckDefault-'+i+'-'+j+'"> SIMILAR ' + j + ':' + ' ' + similar_texts[j].slice(0,200)+'<br>';  
             }
             div.appendChild(span_2);
